@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA — Athletic & Wellness Club</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0A0B0E;
+            --bg-card: #12141A;
+            --bg-card-hover: #1A1D26;
+            --bg-surface: #171922;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F3E5AB;
+            --accent-gold-glow: rgba(212, 175, 55, 0.15);
+            --border-gold: rgba(212, 175, 55, 0.25);
+            --border-muted: rgba(255, 255, 255, 0.08);
+            --text-primary: #F7F5F0;
+            --text-secondary: #9FA4B1;
+            --text-muted: #6B7280;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .font-serif {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5D6 0%, #D4AF37 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Layout & Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #E6C687 0%, #D4AF37 100%);
+            color: #0A0B0E;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #F3E5AB 0%, #E6C687 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-gold);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-gold);
+            background: var(--accent-gold-glow);
+            color: var(--accent-gold-light);
+        }
+
+        /* Header / Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            transition: var(--transition-smooth);
+            background: rgba(10, 11, 14, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar.scrolled {
+            padding: 0.85rem 0;
+            background: rgba(10, 11, 14, 0.95);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+            position: relative;
+        }
+
+        .logo-mark-inner {
+            transform: rotate(-45deg);
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding-top: 140px;
+            padding-bottom: 80px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 50% 30%, rgba(20, 24, 33, 0.8) 0%, var(--bg-dark) 70%),
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-blend-mode: overlay;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,11,14,0.4) 0%, rgba(10,11,14,0.95) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--border-gold);
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 40px;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-gold);
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+            line-height: 1.08;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-muted);
+            max-width: 700px;
+        }
+
+        .stat-item .number {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            color: var(--accent-gold-light);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        /* Section Layouts */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        /* Sanctuary Showcase / Tabs */
+        .tab-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold-light);
+            background: rgba(212, 175, 55, 0.06);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            padding: 2.5rem;
+            border-radius: 4px;
+        }
+
+        .showcase-image-wrap {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+        }
+
+        .showcase-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .showcase-grid:hover .showcase-image-wrap img {
+            transform: scale(1.03);
+        }
+
+        .showcase-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .showcase-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+            font-weight: 300;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .feature-list li i {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+        }
+
+        /* Membership Tier Cards */
+        .billing-toggle-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            cursor: pointer;
+            padding: 3px;
+        }
+
+        .toggle-slider {
+            width: 22px;
+            height: 22px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .save-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold-light);
+            border: 1px solid var(--border-gold);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-gold);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, var(--bg-card) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-gold);
+            color: #0A0B0E;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .price-wrap {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-muted);
+        }
+
+        .price-currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+            color: var(--accent-gold);
+        }
+
+        .price-amount {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--text-primary);
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li i {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+        }
+
+        /* Interactive Assessment Wizard */
+        .concierge-card {
+            background: linear-gradient(135deg, rgba(26,29,38,0.9) 0%, rgba(18,20,26,0.95) 100%);
+            border: 1px solid var(--border-gold);
+            padding: 3rem;
+            border-radius: 4px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-muted);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .quiz-option-card:hover, .quiz-option-card.selected {
+            border-color: var(--accent-gold);
+            background: var(--accent-gold-glow);
+        }
+
+        .quiz-option-card i {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .quiz-option-card span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Class Schedule Filter */
+        .schedule-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .day-filters {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .day-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .day-btn:hover, .day-btn.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold-light);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .schedule-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .schedule-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+
+        .schedule-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateX(4px);
+        }
+
+        .schedule-time {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--accent-gold-light);
+            min-width: 140px;
+        }
+
+        .schedule-details h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .schedule-details span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .schedule-tag {
+            border: 1px solid var(--border-muted);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+        }
+
+        /* Master Trainers */
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .trainer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .trainer-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .trainer-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: var(--transition-smooth);
+        }
+
+        .trainer-card:hover .trainer-img {
+            filter: grayscale(0%);
+        }
+
+        .trainer-info {
+            padding: 1.5rem;
+        }
+
+        .trainer-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .trainer-role {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .trainer-bio {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Press & Testimonials */
+        .press-strip {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.6;
+            margin-bottom: 5rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-muted);
+            border-bottom: 1px solid var(--border-muted);
+        }
+
+        .press-item {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .author-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Modal / Form */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 11, 14, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 3rem;
+            max-width: 550px;
+            width: 100%;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-muted);
+            padding: 0.85rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: #060709;
+            border-top: 1px solid var(--border-muted);
+            padding: 80px 0 40px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo-desc {
+            max-width: 320px;
+            font-weight: 300;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .footer-heading {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .pricing-grid, .trainers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .pricing-grid, .trainers-grid {
+                grid-template-columns: 1fr;
+            }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <div class="logo-mark">
+                    <span class="logo-mark-inner">A</span>
+                </div>
+                <span class="logo-text">AURA</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#sanctuary">Sanctuary</a></li>
+                <li><a href="#memberships">Memberships</a></li>
+                <li><a href="#assessment">Concierge</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#trainers">Master Staff</a></li>
+            </ul>
+
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button class="btn btn-gold" onclick="openModal()">Reserve Pass</button>
+                <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Exclusive Private Membership
+                </div>
+                <h1 class="hero-title">
+                    The Pinnacle of <br>
+                    <span class="gold-gradient-text">Performance & Renewal</span>
+                </h1>
+                <p class="hero-description">
+                    A high-performance sanctuary engineered for uncompromising athletes, leaders, and visionaries. Biometric conditioning meets state-of-the-art thermal spa recovery.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-gold" onclick="openModal()">
+                        <i class="fa-solid fa-key"></i> Request Guest Access
+                    </button>
+                    <a href="#sanctuary" class="btn btn-outline">
+                        Explore Facilities <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="number">12,000<span style="font-size: 1.5rem; color: var(--accent-gold);">sq ft</span></div>
+                        <div class="label">Private Facility Space</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">1 : 4</div>
+                        <div class="label">Coach to Member Ratio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">100%</div>
+                        <div class="label">Thermal Spa & Cryo Suite Access</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Strip -->
+    <div class="container">
+        <div class="press-strip">
+            <span class="press-item">Robb Report</span>
+            <span class="press-item">VOGUE ATHLETIC</span>
+            <span class="press-item">GQ MAGAZINE</span>
+            <span class="press-item">FORBES LUXURY</span>
+        </div>
+    </div>
+
+    <!-- Sanctuary Showcase Section -->
+    <section class="section" id="sanctuary">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Architectural Mastery</span>
+                <h2 class="section-title">Designed for Peak Human Potential</h2>
+                <p class="section-description">Every square foot is calibrated to optimize physiological performance and accelerate neuromuscular restoration.</p>
+            </div>
+
+            <div class="tab-controls">
+                <button class="tab-btn active" onclick="switchTab(0, this)">Biometric Training Lab</button>
+                <button class="tab-btn" onclick="switchTab(1, this)">Thermal Spa & Cryo</button>
+                <button class="tab-btn" onclick="switchTab(2, this)">Private Pilates & Movement</button>
+                <button class="tab-btn" onclick="switchTab(3, this)">Executive Lounge & Nutrition</button>
+            </div>
+
+            <div id="showcase-content" class="showcase-grid">
+                <div class="showcase-image-wrap">
+                    <img id="showcase-img" src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Biometric Lab">
+                </div>
+                <div class="showcase-info">
+                    <h3 id="showcase-title">Biometric Training Lab</h3>
+                    <p id="showcase-desc">Custom Keiser pneumatic technology, force plates, and real-time motion tracking. Engineered to isolate muscle groups with pinpoint accuracy while preserving joint integrity.</p>
+                    <ul class="feature-list" id="showcase-features">
+                        <li><i class="fa-solid fa-check-double"></i> Eleiko Olympic Platforms & Calibrated Steel</li>
+                        <li><i class="fa-solid fa-check-double"></i> Real-time VO2 Max & Lactate Threshold Testing</li>
+                        <li><i class="fa-solid fa-check-double"></i> AI-integrated motion analysis cameras</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openModal()">Book Lab Consultation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Membership Tier Section -->
+    <section class="section" id="memberships" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Membership</span>
+                <h2 class="section-title">Select Your Standard</h2>
+                <p class="section-description">Memberships are strictly capped to ensure uncrowded access, effortless scheduling, and ultimate privacy.</p>
+            </div>
+
+            <div class="billing-toggle-wrap">
+                <span style="font-size: 0.9rem; color: var(--text-secondary);">Monthly</span>
+                <div class="toggle-switch" id="billing-toggle" onclick="toggleBilling()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span style="font-size: 0.9rem; color: var(--text-primary); font-weight: 600;">Annual Pass</span>
+                <span class="save-badge">Save 20%</span>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Plan 1 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="tier-name">Club Atelier</h3>
+                        <p class="tier-desc">Unrestricted facility & thermal access</p>
+                    </div>
+                    <div class="price-wrap">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount" id="price-club">280</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Full Access to Training Suites</li>
+                        <li><i class="fa-solid fa-check"></i> Infrared Sauna & Cold Plunge Suite</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Group Masterclasses</li>
+                        <li><i class="fa-solid fa-check"></i> Complimentary Valet & Towel Service</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openModal('Club Atelier')">Apply For Membership</button>
+                </div>
+
+                <!-- Plan 2 (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="featured-tag">Most Preferred</div>
+                    <div class="pricing-header">
+                        <h3 class="tier-name">Executive Sovereign</h3>
+                        <p class="tier-desc">Private coaching + Biometric diagnostics</p>
+                    </div>
+                    <div class="price-wrap">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount" id="price-exec">450</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Club Atelier</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Private 1:1 Coaching Sessions / mo</li>
+                        <li><i class="fa-solid fa-check"></i> Monthly DEXA Body Scan & VO2 Diagnostic</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated Locker & Laundry Service</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Guest Passes Per Month</li>
+                    </ul>
+                    <button class="btn btn-gold" onclick="openModal('Executive Sovereign')">Apply For Membership</button>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="tier-name">Sanctuary Elite</h3>
+                        <p class="tier-desc">All-inclusive 360° health concierge</p>
+                    </div>
+                    <div class="price-wrap">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount" id="price-elite">850</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Unlimited 1:1 Personal Training</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Hyperbaric & Cryo Sessions</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated Performance & Nutritionist Lead</li>
+                        <li><i class="fa-solid fa-check"></i> Private Suite Reservation Privileges</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Guest Access</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openModal('Sanctuary Elite')">Apply For Membership</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Concierge Assessment Tool -->
+    <section class="section" id="assessment">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Wellness Concierge</span>
+                <h2 class="section-title">Discover Your Protocol</h2>
+                <p class="section-description">Take our 3-step interactive assessment to receive a bespoke training and recovery framework tailor-made for your physiological goals.</p>
+            </div>
+
+            <div class="concierge-card">
+                <!-- Step 1 -->
+                <div class="quiz-step active" id="quiz-1">
+                    <h3 style="text-align: center; margin-bottom: 0.5rem; font-size: 1.8rem;">1. What is your primary objective?</h3>
+                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Select the focus of your current training block</p>
+                    
+                    <div class="quiz-options">
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 1)">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Hypertrophy & Power</span>
+                        </div>
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 1)">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span>Endurance & Longevity</span>
+                        </div>
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 1)">
+                            <i class="fa-solid fa-spa"></i>
+                            <span>Stress Renewal & Spa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="quiz-step" id="quiz-2">
+                    <h3 style="text-align: center; margin-bottom: 0.5rem; font-size: 1.8rem;">2. What is your preferred training frequency?</h3>
+                    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Days per week you dedicate to physical exertion</p>
+                    
+                    <div class="quiz-options">
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 2)">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <span>2–3 Sessions / Week</span>
+                        </div>
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 2)">
+                            <i class="fa-solid fa-calendar-week"></i>
+                            <span>4–5 Sessions / Week</span>
+                        </div>
+                        <div class="quiz-option-card" onclick="selectQuizOption(this, 2)">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>6+ Daily Athlete Protocol</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 / Results -->
+                <div class="quiz-step" id="quiz-3">
+                    <div style="text-align: center;">
+                        <i class="fa-solid fa-award" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem;" class="gold-gradient-text">Your Tailored Protocol Ready</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" id="quiz-result-text">
+                            Based on your selection, we recommend the <strong>Executive Sovereign</strong> tier paired with our High-Contrast Thermal Recovery & Neuromuscular Hypertrophy cycle.
+                        </p>
+                        <button class="btn btn-gold" onclick="openModal('Concierge Recommendation')">Schedule Your Complimentary Trial Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Staff Section -->
+    <section class="section" id="trainers" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">World-Class Leadership</span>
+                <h2 class="section-title">Guided by Master Practitioners</h2>
+                <p class="section-description">Our staff includes Olympic strength coaches, exercise physiologists, and licensed recovery specialists.</p>
+            </div>
+
+            <div class="trainers-grid">
+                <!-- Trainer 1 -->
+                <div class="trainer-card">
+                    <img class="trainer-img" src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=600&q=80" alt="Marcus Vance">
+                    <div class="trainer-info">
+                        <h4>Marcus Vance</h4>
+                        <span class="trainer-role">Head of Strength & Conditioning</span>
+                        <p class="trainer-bio">Former Olympic weightlifting coach with 14+ years training elite professional athletes and executives.</p>
+                    </div>
+                </div>
+
+                <!-- Trainer 2 -->
+                <div class="trainer-card">
+                    <img class="trainer-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Elena Rostova">
+                    <div class="trainer-info">
+                        <h4>Dr. Elena Rostova</h4>
+                        <span class="trainer-role">Director of Biometrics & Recovery</span>
+                        <p class="trainer-bio">Ph.D. in Kinesiology specializing in HRV optimization, infrared thermal therapy, and metabolic profiling.</p>
+                    </div>
+                </div>
+
+                <!-- Trainer 3 -->
+                <div class="trainer-card">
+                    <img class="trainer-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Soren Lindqvist">
+                    <div class="trainer-info">
+                        <h4>Soren Lindqvist</h4>
+                        <span class="trainer-role">Pilates Master & Movement Specialist</span>
+                        <p class="trainer-bio">Certified Master Practitioner focusing on spinal decompressive movement, kinetic alignment, and reformer flow.</p>
+                    </div>
+                </div>
+
+                <!-- Trainer 4 -->
+                <div class="trainer-card">
+                    <img class="trainer-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Julian Thorne">
+                    <div class="trainer-info">
+                        <h4>Julian Thorne</h4>
+                        <span class="trainer-role">Combat Conditioning & HIIT</span>
+                        <p class="trainer-bio">Former professional boxing trainer delivering high-intensity cardiovascular conditioning and agility training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Curated Masterclasses</span>
+                <h2 class="section-title">Weekly Schedule</h2>
+                <p class="section-description">Intimate session sizes capped at 8 participants for personal attention and seamless movement.</p>
+            </div>
+
+            <div class="schedule-controls">
+                <div class="day-filters">
+                    <button class="day-btn active" onclick="filterSchedule('Mon', this)">Mon</button>
+                    <button class="day-btn" onclick="filterSchedule('Tue', this)">Tue</button>
+                    <button class="day-btn" onclick="filterSchedule('Wed', this)">Wed</button>
+                    <button class="day-btn" onclick="filterSchedule('Thu', this)">Thu</button>
+                    <button class="day-btn" onclick="filterSchedule('Fri', this)">Fri</button>
+                    <button class="day-btn" onclick="filterSchedule('Sat', this)">Sat / Sun</button>
+                </div>
+            </div>
+
+            <div class="schedule-grid" id="schedule-list">
+                <!-- Dynamic Items Inserted via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "AURA has completely transformed how I balance intense corporate performance with deep physiological renewal. The thermal spa suite alone is worth ten times the membership."
+                </div>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Member Avatar">
+                    <div class="author-info">
+                        <div class="author-name">Harrison Vance</div>
+                        <div class="author-title">Managing Director, Apex Capital</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Form for Guest Pass / Reservation -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;" class="gold-gradient-text" id="modal-title">Reserve Private Guest Pass</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Experience 24-hour full sanctuary access with a personalized biometrics tour.</p>
+            
+            <form id="reservation-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" required placeholder="Alexander Wright">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" required placeholder="alexander@company.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" required placeholder="+1 (555) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Preferred Tier / Interest</label>
+                    <select class="form-select" id="modal-select">
+                        <option value="Executive Sovereign">Executive Sovereign Plan</option>
+                        <option value="Club Atelier">Club Atelier Plan</option>
+                        <option value="Sanctuary Elite">Sanctuary Elite Plan</option>
+                        <option value="Private Tour">Private Facility Tour</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 1rem;">Confirm Reservation Request</button>
+            </form>
+            <div id="form-success" style="display: none; text-align: center; padding: 2rem 0;">
+                <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                <h4>Reservation Request Received</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Our membership director will contact you within 2 hours to confirm your private guest access.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo">
+                        <div class="logo-mark"><span class="logo-mark-inner">A</span></div>
+                        <span class="logo-text">AURA</span>
+                    </a>
+                    <p class="footer-logo-desc">
+                        A private athletic sanctuary for high performers. Where physical peak meets absolute mental renewal.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Sanctuary</h4>
+                    <ul class="footer-links">
+                        <li><a href="#sanctuary">Biometric Lab</a></li>
+                        <li><a href="#sanctuary">Thermal Spa & Cryo</a></li>
+                        <li><a href="#sanctuary">Reformer Studio</a></li>
+                        <li><a href="#sanctuary">Rooftop Pool</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Club Access</h4>
+                    <ul class="footer-links">
+                        <li><a href="#memberships">Membership Tiers</a></li>
+                        <li><a href="#schedule">Class Schedule</a></li>
+                        <li><a href="#assessment">Wellness Concierge</a></li>
+                        <li><a href="#trainers">Master Staff</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Visit Us</h4>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                        450 Madison Avenue, Penthouse 8<br>
+                        New York, NY 10022<br>
+                        concierge@auraclub.com
+                    </p>
+                    <div style="display: flex; gap: 1rem; color: var(--accent-gold);">
+                        <i class="fa-brands fa-instagram" style="font-size: 1.2rem; cursor: pointer;"></i>
+                        <i class="fa-brands fa-linkedin-in" style="font-size: 1.2rem; cursor: pointer;"></i>
+                        <i class="fa-brands fa-x-twitter" style="font-size: 1.2rem; cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 AURA Athletic & Wellness Club Inc. All rights reserved.</div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Showcase Data
+        const showcaseData = [
+            {
+                title: "Biometric Training Lab",
+                desc: "Custom Keiser pneumatic technology, force plates, and real-time motion tracking. Engineered to isolate muscle groups with pinpoint accuracy while preserving joint integrity.",
+                img: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80",
+                features: [
+                    "Eleiko Olympic Platforms & Calibrated Steel",
+                    "Real-time VO2 Max & Lactate Threshold Testing",
+                    "AI-integrated motion analysis cameras"
+                ]
+            },
+            {
+                title: "Thermal Spa & Cryo Suite",
+                desc: "Contrast therapy room featuring 45°F Scandinavian cold plunges, 190°F Finnish cedar saunas, infrared suites, and sub-zero localized cryotherapy.",
+                img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1200&q=80",
+                features: [
+                    "Infrared Deep-Tissue Therapy Lounges",
+                    "Magnesium Hydrotherapy Mineral Pools",
+                    "Hyperbaric Oxygen Recovery Chambers"
+                ]
+            },
+            {
+                title: "Private Pilates & Kinetic Studio",
+                desc: "Custom balanced-body reformers designed for low-impact joint elongation, core stabilization, and spinal mobility under elite 1:1 guidance.",
+                img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80",
+                features: [
+                    "State-of-the-art Reformer & Cadillac Towers",
+                    "Customized postural alignment assessments",
+                    "Acoustically isolated private studios"
+                ]
+            },
+            {
+                title: "Executive Lounge & Elixir Bar",
+                desc: "Complimentary custom electrolyte blends, post-workout nutrient-dense smoothies, organic cold-pressed juices, and high-speed executive workspaces.",
+                img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+                features: [
+                    "Custom macro-matched protein elixirs",
+                    "Encrypted Wi-Fi & private call phone booths",
+                    "Artisanal specialty espresso & adaptor lounge"
+                ]
+            }
+        ];
+
+        function switchTab(index, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const item = showcaseData[index];
+            const content = document.getElementById('showcase-content');
+            
+            content.style.opacity = '0.3';
+            setTimeout(() => {
+                document.getElementById('showcase-title').innerText = item.title;
+                document.getElementById('showcase-desc').innerText = item.desc;
+                document.getElementById('showcase-img').src = item.img;
+
+                const featUl = document.getElementById('showcase-features');
+                featUl.innerHTML = item.features.map(f => `<li><i class="fa-solid fa-check-double"></i> ${f}</li>`).join('');
+
+                content.style.opacity = '1';
+            }, 200);
+        }
+
+        // Billing Toggle
+        let isAnnual = false;
+        function toggleBilling() {
+            isAnnual = !isAnnual;
+            const toggle = document.getElementById('billing-toggle');
+            if (isAnnual) {
+                toggle.classList.add('active');
+                document.getElementById('price-club').innerText = '224';
+                document.getElementById('price-exec').innerText = '360';
+                document.getElementById('price-elite').innerText = '680';
+            } else {
+                toggle.classList.remove('active');
+                document.getElementById('price-club').innerText = '280';
+                document.getElementById('price-exec').innerText = '450';
+                document.getElementById('price-elite').innerText = '850';
+            }
+        }
+
+        // Concierge Assessment Quiz
+        let selectedAnswers = {};
+        function selectQuizOption(element, step) {
+            const container = element.parentElement;
+            container.querySelectorAll('.quiz-option-card').forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+
+            setTimeout(() => {
+                document.getElementById(`quiz-${step}`).classList.remove('active');
+                document.getElementById(`quiz-${step + 1}`).classList.add('active');
+            }, 300);
+        }
+
+        // Schedule Data & Filter
+        const scheduleData = {
+            'Mon': [
+                { time: '06:30 AM', name: 'Biometric Strength & Hypertrophy', instructor: 'Marcus Vance', category: 'Strength' },
+                { time: '08:30 AM', name: 'Kinetic Reformer Flow', instructor: 'Soren Lindqvist', category: 'Pilates' },
+                { time: '05:30 PM', name: 'High-Contrast Thermal Recovery', instructor: 'Dr. Elena Rostova', category: 'Recovery' },
+                { time: '06:45 PM', name: 'Championship Combat Conditioning', instructor: 'Julian Thorne', category: 'HIIT' }
+            ],
+            'Tue': [
+                { time: '07:00 AM', name: 'Olympic Power & Explosive Force', instructor: 'Marcus Vance', category: 'Strength' },
+                { time: '09:00 AM', name: 'Spinal Decompression & Alignment', instructor: 'Soren Lindqvist', category: 'Pilates' },
+                { time: '04:30 PM', name: 'Cryo & Metabolic Reset', instructor: 'Dr. Elena Rostova', category: 'Recovery' }
+            ],
+            'Wed': [
+                { time: '06:30 AM', name: 'Functional Engine & VO2 Max', instructor: 'Julian Thorne', category: 'HIIT' },
+                { time: '08:30 AM', name: 'Advanced Reformer Athletics', instructor: 'Soren Lindqvist', category: 'Pilates' },
+                { time: '06:00 PM', name: 'Infrared Hyperthermia & Flow', instructor: 'Dr. Elena Rostova', category: 'Recovery' }
+            ],
+            'Thu': [
+                { time: '07:00 AM', name: 'Hypertrophy & Neuromuscular Focus', instructor: 'Marcus Vance', category: 'Strength' },
+                { time: '09:30 AM', name: 'Heart Rate Zone 2 Endurance', instructor: 'Julian Thorne', category: 'HIIT' },
+                { time: '05:00 PM', name: 'Scandinavian Hydrotherapy', instructor: 'Dr. Elena Rostova', category: 'Recovery' }
+            ],
+            'Fri': [
+                { time: '06:30 AM', name: 'Full-Body Kinetic Conditioning', instructor: 'Marcus Vance', category: 'Strength' },
+                { time: '08:30 AM', name: 'Pilates Sculpt & Breathwork', instructor: 'Soren Lindqvist', category: 'Pilates' },
+                { time: '05:30 PM', name: 'Weekend Renewal Contrast Plunge', instructor: 'Dr. Elena Rostova', category: 'Recovery' }
+            ],
+            'Sat': [
+                { time: '08:30 AM', name: 'Weekend Warrior Boxing & Cardio', instructor: 'Julian Thorne', category: 'HIIT' },
+                { time: '10:00 AM', name: 'Master Pilates Reformer', instructor: 'Soren Lindqvist', category: 'Pilates' },
+                { time: '11:30 AM', name: 'Complete Body Scan & Spa Protocol', instructor: 'Dr. Elena Rostova', category: 'Recovery' }
+            ]
+        };
+
+        function filterSchedule(day, btn) {
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const list = document.getElementById('schedule-list');
+            const items = scheduleData[day] || scheduleData['Mon'];
+
+            list.innerHTML = items.map(item => `
+                <div class="schedule-item">
+                    <div class="schedule-time">${item.time}</div>
+                    <div class="schedule-details">
+                        <h4>${item.name}</h4>
+                        <span>With ${item.instructor}</span>
+                    </div>
+                    <div class="schedule-tag">${item.category}</div>
+                </div>
+            `).join('');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const exists = navLinks.classList.contains('mobile-active');
+            if (!exists) {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.background = 'var(--bg-card)';
+                navLinks.style.padding = '1.5rem';
+                navLinks.style.borderTop = '1px solid var(--border-gold)';
+                navLinks.style.gap = '1rem';
+                navLinks.classList.add('mobile-active');
+            } else {
+                navLinks.style.display = '';
+                navLinks.classList.remove('mobile-active');
+            }
+        }
+
+        // Initialize Schedule on Mon
+        filterSchedule('Mon', document.querySelector('.day-btn'));
+
+        // Modal Functions
+        function openModal(tierName = '') {
+            const modal = document.getElementById('modal');
+            const select = document.getElementById('modal-select');
+            if (tierName && select) {
+                select.value = tierName;
+            }
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('reservation-form').style.display = 'block';
+                document.getElementById('form-success').style.display = 'none';
+            }, 300);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('reservation-form').style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
